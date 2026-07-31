@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/nift-sdks/nift-flow-sdk-docs
+authentication:
+  style: oauth2-client-credentials
+  token_endpoint: https://www.gonift.com/oauth/token
+  bearer: true
+  scopes: [read:customers, write:customers]
+  sdk_auth: Nift-issued clientId + partner referralCode (client-side SDKs)
+  see: authentication/nift-authentication.yml
+idempotency:
+  supported: true
+  mechanism: semantic
+  note: >-
+    The customer deletions endpoint is documented as idempotent: re-submitting an
+    already-queued email is skipped and not counted in queued_count, so retrying after a
+    network failure is safe. There is no Idempotency-Key header; idempotency is a natural
+    property of the operation. Email addresses are normalized (trimmed + lowercased) before
+    matching.
+pagination:
+  supported: false
+  note: The documented Partners endpoints return single objects / receipts; no list pagination.
+versioning:
+  style: date-in-path
+  see: lifecycle/nift-lifecycle.yml
+request_format:
+  status_endpoint: 'application/x-www-form-urlencoded (email + code)'
+  deletions_endpoint: 'application/json body { "emails": [...] }'
+error_envelope:
+  shape: oauth2-error
+  fields: [error, error_description]
+  auth_failures: empty body; error in WWW-Authenticate header (realm="Doorkeeper")
+  see: errors/nift-problem-types.yml
+rate_limiting:
+  documented: false
+  note: Nift's own partner docs do not publish rate limits for the Partners API.
+data_privacy:
+  note: >-
+    Deletion is fulfilled by anonymization (scrub/replace) rather than record deletion;
+    responses never disclose whether an email belongs to a Nift customer.

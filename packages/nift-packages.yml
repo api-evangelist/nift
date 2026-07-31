@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/nift-sdks/nift-flow-sdk-docs
+notes: >-
+  Nift ships first-party SDKs to embed the Nift gift-redemption card flow. The web SDK
+  loads from Nift's CDN; the mobile SDKs are distributed via GitHub Packages / Swift
+  Package Manager and require a Nift-issued access token to install (private registries).
+packages:
+  - language: javascript
+    registry: cdn
+    name: nift-web-sdk
+    url: https://cdn.nift.me/sdk/webembed/latest/nift-web-sdk.umd.min.js
+    install: '<script src="https://cdn.nift.me/sdk/webembed/latest/nift-web-sdk.umd.min.js"></script>'
+    global: NiftWebSDK
+    official: true
+    docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/web.md
+  - language: kotlin
+    registry: github-packages-maven
+    name: com.nift:nift-card-flow
+    version: 2.2.6
+    url: https://maven.pkg.github.com/nift-sdks/nift-card-flow-android-source
+    install: "implementation 'com.nift:nift-card-flow:2.2.6'"
+    official: true
+    private: true
+    docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/android.md
+  - language: swift
+    registry: swift-package-manager
+    name: nift-card-flow-ios
+    version: 3.0.10
+    url: https://github.com/nift-sdks/nift-card-flow-ios
+    install: '.package(url: "https://github.com/nift-sdks/nift-card-flow-ios.git", from: "3.0.10")'
+    official: true
+    private: true
+    docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/ios.md
+  - language: javascript
+    registry: github-packages-npm
+    name: '@nift-sdks/nift-card-flow-react-native'
+    version: 3.9.5
+    url: https://npm.pkg.github.com/nift-sdks/
+    install: npm install @nift-sdks/nift-card-flow-react-native
+    official: true
+    private: true
+    docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/react-native.md

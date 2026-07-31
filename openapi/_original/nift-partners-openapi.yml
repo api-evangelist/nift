@@ -1,0 +1,178 @@
+openapi: 3.1.0
+x-apievangelist-generated: '2026-07-20'
+x-apievangelist-method: generated
+x-apievangelist-source: https://github.com/nift-sdks/nift-flow-sdk-docs (Customer Status Server API + Customer Deletion API docs)
+info:
+  title: Nift Partners API
+  version: '2026-07'
+  description: >-
+    Nift's server-side Partners API. It exposes customer eligibility/status lookups
+    and GDPR-style customer deletion (anonymization) requests for partners who
+    integrate the Nift gift redemption flow. Authentication is OAuth 2.0 client
+    credentials issued by Nift; scopes gate read vs. write access to customer data.
+    Faithfully reconstructed by API Evangelist from Nift's published partner docs;
+    Nift does not publish a machine-readable OpenAPI.
+  contact:
+    name: Nift Developer Support
+    email: dev@gonift.com
+    url: https://github.com/nift-sdks/nift-flow-sdk-docs
+  termsOfService: https://www.gonift.com/terms/
+servers:
+  - url: https://www.gonift.com
+    description: Production
+tags:
+  - name: Customers
+    description: Customer status and deletion operations for partners.
+paths:
+  /api/v:2023-03/partners/customers/status:
+    post:
+      operationId: getCustomerStatus
+      summary: Get customer status
+      description: >-
+        Returns a customer's Nift eligibility status, the last time they activated a
+        Nift card, and the last time they selected a gift, keyed by the customer's
+        email and the partner's referral code.
+      tags: [Customers]
+      security:
+        - oauth2: [read:customers]
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [email, code]
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: The customer's email address.
+                  example: person@email.com
+                code:
+                  type: string
+                  description: The partner referral code.
+      responses:
+        '200':
+          description: Customer status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerStatus'
+              example:
+                status: available
+                last_activated_at: '2022-10-26T17:30:00.000-04:00'
+                last_selected_at: '2022-11-01T12:21:00.000-04:00'
+        '401':
+          description: Missing, invalid, or expired access token.
+          headers:
+            WWW-Authenticate:
+              schema: { type: string }
+              description: 'Bearer realm="Doorkeeper", error="invalid_token", ...'
+  /api/v2026-07/partners/customers/deletions:
+    post:
+      operationId: createCustomerDeletions
+      summary: Submit customer deletion requests
+      description: >-
+        Submits one or many customer email addresses for deletion. Nift fulfils
+        requests by anonymization (scrubbing/replacing personal data) asynchronously
+        in the background. The endpoint is idempotent: re-submitting an address that
+        is already queued is skipped, so retrying after a network failure is safe.
+      tags: [Customers]
+      security:
+        - oauth2: [write:customers]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [emails]
+              properties:
+                emails:
+                  type: array
+                  minItems: 1
+                  maxItems: 500
+                  items:
+                    type: string
+                    format: email
+                  description: Array of 1-500 customer email addresses.
+            example:
+              emails: [jane@example.com, john@example.com]
+      responses:
+        '202':
+          description: Receipt acknowledging the deletion request was accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletionReceipt'
+              example:
+                received_count: 2
+                queued_count: 2
+        '400':
+          description: >-
+            invalid_request - emails is missing, not an array, empty, longer than
+            500 entries, or contains non-string values.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: invalid_token - the access token is missing, invalid, or expired (empty body; details in WWW-Authenticate header).
+          headers:
+            WWW-Authenticate:
+              schema: { type: string }
+        '403':
+          description: >-
+            insufficient_scope (token lacks write:customers) or
+            integration_not_configured (application not set up for deletion).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 client credentials issued by Nift; token endpoint at /oauth/token.
+      flows:
+        clientCredentials:
+          tokenUrl: https://www.gonift.com/oauth/token
+          scopes:
+            read:customers: Read access to customer status.
+            write:customers: Submit customer deletion (anonymization) requests.
+  schemas:
+    CustomerStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [available, selected]
+          description: Whether the customer is eligible to receive a Nift gift or has already selected one.
+        last_activated_at:
+          type: [string, 'null']
+          format: date-time
+          description: The last time the customer activated a Nift card.
+        last_selected_at:
+          type: [string, 'null']
+          format: date-time
+          description: The last time the customer selected a gift.
+    DeletionReceipt:
+      type: object
+      properties:
+        received_count:
+          type: integer
+          description: Number of email addresses received in this request.
+        queued_count:
+          type: integer
+          description: Number of addresses newly queued for deletion (minus invalid, duplicated, or already-queued addresses).
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: OAuth 2.0 style error code.
+          example: invalid_request
+        error_description:
+          type: string
+          description: Human-readable error description.
+          example: emails must be a JSON array of 1..500 email strings

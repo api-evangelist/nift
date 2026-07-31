@@ -1,9 +1,28 @@
 aid: nift
 name: NIFT
-description: 'NIFT is a company surfaced as a portfolio company of foundry-group and added to the API
-  Evangelist network as a stub for enrichment. Sector: marketing. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  Nift is a customer-gifting and acquisition platform: businesses send "thank-you" gifts
+  that let their own customers discover and try new brands, restaurants, and services,
+  while the partnering brands gain new customers at the moment of gift selection. Proprietary
+  AI matches each recipient to relevant gift options. For developers, Nift ships a partner
+  integration surface: first-party SDKs (Web, iOS, Android, React Native) that embed the Nift
+  gift-redemption "card flow" directly into a partner's app, plus a server-side Partners API
+  secured with OAuth 2.0 client credentials for looking up customer eligibility status and
+  submitting GDPR-style customer deletion (anonymization) requests. Backed by Foundry Group.
 url: https://raw.githubusercontent.com/api-evangelist/nift/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.nift.me/assets/media_library/Nift-30-GiftCard-330af8982cf61d121b763521121a4025dd0f85b6010e361ebc736d0fa0d13d78.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,16 +31,92 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Marketing
-apis: []
+- Gifting
+- Customer Acquisition
+- Loyalty
+- Rewards
+- SDK
+- Partners
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: nift:nift-customers-api
+  name: NIFT Customers API
+  description: Customer status and deletion operations for partners.
+  humanURL: https://github.com/nift-sdks/nift-flow-sdk-docs
+  baseURL: https://www.gonift.com
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/nift-customers-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/nift-sdks/nift-flow-sdk-docs
+  - type: APIReference
+    url: >-
+      https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-status-server.md
 common:
 - type: Website
   url: https://www.gonift.com
+- type: DeveloperPortal
+  url: https://github.com/nift-sdks/nift-flow-sdk-docs
+- type: Documentation
+  url: https://github.com/nift-sdks/nift-flow-sdk-docs
+- type: GitHubOrganization
+  url: https://github.com/nift-sdks
+- type: Support
+  url: https://www.gonift.com/contact_us/
+- type: Blog
+  url: https://www.gonift.com/business/newsroom/
+- type: SignUp
+  url: https://www.gonift.com/users/sign_in
+- type: TermsOfService
+  url: https://www.gonift.com/terms/
+- type: PrivacyPolicy
+  url: https://www.gonift.com/privacy/
+- type: Authentication
+  url: authentication/nift-authentication.yml
+- type: OAuthScopes
+  url: scopes/nift-scopes.yml
+- type: SDKs
+  url: packages/nift-packages.yml
+- type: Packages
+  url: packages/nift-packages.yml
+- type: Components
+  url: components/nift-components.yml
+- type: MCPServer
+  url: mcp/nift-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/nift-agentic-access.yml
+- type: LLMsTxt
+  url: llms/nift-llms.txt
+- type: WellKnown
+  url: well-known/nift-well-known.yml
+- type: Conventions
+  url: conventions/nift-conventions.yml
+- type: Idempotency
+  url: conventions/nift-conventions.yml
+- type: ErrorCatalog
+  url: errors/nift-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/nift-lifecycle.yml
+- type: Conformance
+  url: conformance/nift-conformance.yml
+- type: DataModel
+  url: data-model/nift-data-model.yml
+- type: DomainSecurity
+  url: security/nift-domain-security.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1

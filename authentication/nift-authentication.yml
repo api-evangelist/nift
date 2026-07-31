@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/nift-partners-openapi.yml
+docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-status-server.md
+notes: >-
+  Server-side Partners API uses OAuth 2.0 client_credentials (client_id + client_secret
+  issued by Nift) posted to https://www.gonift.com/oauth/token; scopes read:customers /
+  write:customers gate access. Long-lived tokens (~1 year). Client-side SDKs (web/iOS/
+  Android/React Native) authenticate the gift flow with a Nift-issued clientId + partner
+  referralCode instead of an OAuth token.
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://www.gonift.com/oauth/token
+    scopes: 2
+  description: OAuth 2.0 client credentials issued by Nift; token endpoint at /oauth/token.
+  sources:
+  - openapi/nift-partners-openapi.yml

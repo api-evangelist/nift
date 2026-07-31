@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/nift-partners-openapi.yml
+notes: >-
+  No official Nift-hosted MCP server was found. Candidate tool list derived from the
+  documented Partners API operations. Both tools require OAuth 2.0 client_credentials
+  (scopes read:customers / write:customers).
+server:
+  name: nift-partners
+  transport: http
+tools:
+  - name: get_customer_status
+    description: Look up a customer's Nift eligibility status and last activation/selection times by email and referral code.
+    scope: read:customers
+    source_operation: openapi/nift-partners-openapi.yml#getCustomerStatus
+  - name: create_customer_deletions
+    description: Submit 1-500 customer email addresses for deletion (anonymization); idempotent and processed asynchronously.
+    scope: write:customers
+    source_operation: openapi/nift-partners-openapi.yml#createCustomerDeletions

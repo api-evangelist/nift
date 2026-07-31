@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/nift-sdks/nift-flow-sdk-docs
+notes: >-
+  Nift ships embeddable client-side surfaces that render the gift-redemption ("card flow")
+  experience inside a partner's own web or mobile app. These are UI components distinct from
+  the server-side Partners API.
+families:
+  - name: Web embedded modal
+    loader: https://cdn.nift.me/sdk/webembed/latest/nift-web-sdk.umd.min.js
+    global: NiftWebSDK
+    components:
+      - name: Embedded modal
+        api: NiftWebSDK.showEmbeddedModal()
+        description: In-page iframe modal with an offer screen then the full Nift redemption flow; callbacks onShow/onSelection/onIneligible/onClose.
+    options: [clientId, customer, code, countryCode, skipOffer, showClose, encryptedOrigin]
+    docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/web.md
+  - name: Android card flow
+    components:
+      - name: NiftCardFlowFragment
+        description: Android View fragment rendering the card flow.
+      - name: NiftCardFlowScreen
+        description: Jetpack Compose screen rendering the card flow.
+    docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/android.md
+  - name: iOS card flow
+    components:
+      - name: NiftCardFlowView
+        description: SwiftUI view rendering the card flow (usable in UIKit via UIHostingController).
+    docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/ios.md
+  - name: React Native card flow
+    components:
+      - name: NiftCardFlowView
+        description: Cross-platform React Native component rendering the card flow.
+    docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/react-native.md

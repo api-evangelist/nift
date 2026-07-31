@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/nift-partners-openapi.yml
+docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-status-server.md
+schemes:
+- name: oauth2
+  source: openapi/nift-partners-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://www.gonift.com/oauth/token
+  description: OAuth 2.0 client credentials issued by Nift; token endpoint at /oauth/token.
+scopes:
+- scope: read:customers
+  description: Read access to customer status.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/nift-partners-openapi.yml
+- scope: write:customers
+  description: Submit customer deletion (anonymization) requests.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/nift-partners-openapi.yml

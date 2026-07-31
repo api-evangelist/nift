@@ -1,0 +1,31 @@
+# Nift
+
+> Nift is a customer-gifting / acquisition platform: businesses send "thank-you" gifts that let their customers discover and try new brands, restaurants, and services. Partners integrate the Nift gift-redemption ("card flow") into their apps via SDKs, and use a server-side Partners API for customer status and deletion. Proprietary AI matches each recipient to gift options.
+
+## APIs
+- [Nift Partners API](https://github.com/nift-sdks/nift-flow-sdk-docs): OAuth2 server-side API for customer status and deletion (base https://www.gonift.com).
+
+## Specs
+- [OpenAPI (reconstructed)](openapi/nift-partners-openapi.yml): Partners API — getCustomerStatus, createCustomerDeletions.
+
+## SDKs
+- [Web SDK](https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/web.md): NiftWebSDK, CDN embed with an in-page modal card flow.
+- [Android SDK](https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/android.md): NiftCardFlowFragment / NiftCardFlowScreen (com.nift:nift-card-flow).
+- [iOS SDK](https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/ios.md): NiftCardFlowView (Swift Package Manager).
+- [React Native SDK](https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/react-native.md): @nift-sdks/nift-card-flow-react-native.
+
+## Docs
+- [SDK & API docs](https://github.com/nift-sdks/nift-flow-sdk-docs): all partner integration docs.
+- [Customer Status Server API](https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-status-server.md)
+- [Customer Deletion API](https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-deletion-api.md)
+- [Encrypting values (AES-256-GCM)](https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/encrypting_values.md)
+- [Referral codes](https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/referral_codes.md)
+
+## Company
+- [Website](https://www.gonift.com)
+- [For Business / How it works](https://www.gonift.com/business/how-it-works/)
+- [Partners](https://www.gonift.com/business/partners/)
+- [Newsroom](https://www.gonift.com/business/newsroom/)
+- [Terms](https://www.gonift.com/terms/)
+- [Privacy](https://www.gonift.com/privacy/)
+- [Data Privacy Framework](https://www.gonift.com/business/data-privacy-framework/)

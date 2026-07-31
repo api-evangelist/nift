@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/nift-sdks/nift-flow-sdk-docs
+versioning:
+  scheme: date-in-path
+  note: >-
+    The Partners API versions by date embedded in the URL path (e.g.
+    /api/v:2023-03/partners/customers/status and /api/v2026-07/partners/customers/deletions).
+    Different operations pin to different dated versions.
+  current: v2026-07
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    The web SDK marks the legacy `region` init parameter deprecated in favor of `countryCode`,
+    but Nift publishes no formal API deprecation/Sunset-header policy.
+sla:
+  url: null
+status_page: null
+notes: >-
+  No public status page or formal SLA was found for gonift.com. SDK versions are pinned
+  (web = latest via CDN; Android com.nift:nift-card-flow 2.2.6; iOS 3.0.10; RN 3.9.5).
+deprecated_operations: []

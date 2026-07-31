@@ -1,0 +1,14 @@
+{
+  "provider": "nift",
+  "sources": [
+    "nift-customers-api-openapi.yml"
+  ],
+  "outputs": [
+    "nift-customers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

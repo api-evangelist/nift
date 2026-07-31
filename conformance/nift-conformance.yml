@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nift-partners-openapi.yml + Nift partner docs
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: OAuth 2.0 client_credentials flow at /oauth/token with read:customers / write:customers scopes
+  - id: oauth2-bearer-tokens
+    conforms: true
+    evidence: RFC 6750 Bearer tokens; auth failures return WWW-Authenticate header (realm="Doorkeeper")
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: errors use OAuth 2.0 error/error_description JSON envelope, not application/problem+json
+  - id: gdpr
+    conforms: true
+    evidence: dedicated customer deletion (anonymization) API + Data Privacy Framework page (https://www.gonift.com/business/data-privacy-framework/)
+  - id: fhir-r4
+    conforms: false
+  - id: fapi
+    conforms: false

@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Nift Partners API
+  version: 1.0.0
+extends: openapi/nift-partners-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-rating: 3
+      x-apievangelist-notes: >-
+        Reconstructed from Nift's partner SDK docs; server-side API is OAuth2
+        client_credentials with read:customers / write:customers scopes.
+  - target: $.paths['/api/v2026-07/partners/customers/deletions'].post
+    update:
+      x-idempotent: true
+      x-idempotency-note: >-
+        Re-submitting an already-queued email is skipped, so retrying after a network
+        failure is safe (semantic idempotency; no Idempotency-Key header).
+  - target: $.info
+    update:
+      x-privacy: >-
+        Deletion is fulfilled by anonymization; responses never disclose whether an
+        email belongs to a Nift customer.

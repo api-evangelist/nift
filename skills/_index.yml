@@ -1,0 +1,11 @@
+generated: '2026-07-20'
+method: generated
+skills:
+  - file: nift-check-customer-status.md
+    name: Check Nift customer status
+    api: openapi/nift-partners-openapi.yml
+    operations: [getCustomerStatus]
+  - file: nift-delete-customers.md
+    name: Submit Nift customer deletion requests
+    api: openapi/nift-partners-openapi.yml
+    operations: [createCustomerDeletions]

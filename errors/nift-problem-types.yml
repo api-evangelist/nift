@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-deletion-api.md
+format: oauth2-error
+envelope:
+  fields: [error, error_description]
+  note: >-
+    Non-2xx responses carry an OAuth 2.0 style { "error", "error_description" } JSON body.
+    Authentication failures (invalid_token, insufficient_scope) instead return an EMPTY body
+    with the error carried in the WWW-Authenticate response header per the OAuth2 Bearer spec.
+problems:
+  - status: 400
+    error: invalid_request
+    title: Invalid request
+    detail: emails is missing, not an array, empty, longer than 500 entries, or contains non-string values.
+    source_operation: openapi/nift-partners-openapi.yml#createCustomerDeletions
+  - status: 401
+    error: invalid_token
+    title: Invalid or expired token
+    detail: The access token is missing, invalid, or expired. Returned with an empty body; details in WWW-Authenticate header.
+    remediation: Request a new access token from /oauth/token.
+    source_operation: openapi/nift-partners-openapi.yml#createCustomerDeletions
+  - status: 403
+    error: insufficient_scope
+    title: Insufficient scope
+    detail: The token does not have the required scope (e.g. write:customers for deletions).
+    remediation: Request a token with the correct scope.
+    source_operation: openapi/nift-partners-openapi.yml#createCustomerDeletions
+  - status: 403
+    error: integration_not_configured
+    title: Integration not configured
+    detail: Your application is not set up for deletion requests.
+    remediation: Contact Nift to enable the deletion integration.
+    source_operation: openapi/nift-partners-openapi.yml#createCustomerDeletions

@@ -1,0 +1,36 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nift-partners-openapi.yml
+entities:
+  - name: Customer
+    description: A partner's customer, identified to Nift by email address.
+    fields:
+      - {name: email, type: string, identifier: true}
+      - {name: firstName, type: string}
+      - {name: lastName, type: string}
+      - {name: phoneNumber, type: string}
+      - {name: zipcode, type: string}
+      - {name: countryCode, type: string}
+      - {name: language, type: string}
+    relationships:
+      - {type: has_one, target: CustomerStatus, via: email}
+  - name: CustomerStatus
+    description: A customer's Nift eligibility state and activity timestamps.
+    fields:
+      - {name: status, type: string, enum: [available, selected]}
+      - {name: last_activated_at, type: date-time}
+      - {name: last_selected_at, type: date-time}
+    relationships:
+      - {type: belongs_to, target: Customer, via: email}
+  - name: ReferralCode
+    description: A partner-level referral code (same for all of a partner's customers) that keys status lookups and the SDK gift flow.
+    fields:
+      - {name: code, type: string, identifier: true}
+  - name: DeletionRequest
+    description: A batch of customer emails submitted for anonymization.
+    fields:
+      - {name: emails, type: array<string>}
+      - {name: received_count, type: integer}
+      - {name: queued_count, type: integer}
+    relationships:
+      - {type: has_many, target: Customer, via: emails}
