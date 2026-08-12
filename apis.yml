@@ -63,6 +63,8 @@ apis:
     url: >-
       https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-status-server.md
 common:
+- type: Overlay
+  url: overlays/nift-partners-overlay.yaml
 - type: Website
   url: https://www.gonift.com
 - type: DeveloperPortal
