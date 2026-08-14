@@ -11,17 +11,22 @@ description: >-
   submitting GDPR-style customer deletion (anonymization) requests. Backed by Foundry Group.
 url: https://raw.githubusercontent.com/api-evangelist/nift/refs/heads/main/apis.yml
 accessModel:
-  pricing: unknown
-  onboarding: self-serve
+  pricing: enterprise
+  onboarding: approval
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Enterprise · Requires approval
+  confidence: high
   source:
-  - authentication
-  generated: '2026-07-22'
-  method: derived
+  - plans/nift-plans-pricing.yml
+  - https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-status-server.md
+  note: >-
+    Corrected 2026-08-13. Nift publishes no pricing and no self-serve signup for developers:
+    the OAuth client_id/client_secret, the SDK clientId and the partner referral code are all
+    "given by Nift" per the published docs, and every commercial path routes to "Book a demo".
+  generated: '2026-08-13'
+  method: searched
 image: https://cdn.nift.me/assets/media_library/Nift-30-GiftCard-330af8982cf61d121b763521121a4025dd0f85b6010e361ebc736d0fa0d13d78.png
 x-type: company
 x-source: vc-portfolio
@@ -31,7 +36,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-13'
 tags:
 - Company
 - Marketing
@@ -71,6 +76,9 @@ common:
   url: https://github.com/nift-sdks/nift-flow-sdk-docs
 - type: Documentation
   url: https://github.com/nift-sdks/nift-flow-sdk-docs
+- type: GettingStarted
+  url: >-
+    https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/web.md#quick-start
 - type: GitHubOrganization
   url: https://github.com/nift-sdks
 - type: Support
@@ -95,14 +103,14 @@ common:
   url: components/nift-components.yml
 - type: MCPServer
   url: mcp/nift-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/nift-tool-crosswalk.yml
 - type: AgentSkill
   url: skills/_index.yml
 - type: AgenticAccess
   url: agentic-access/nift-agentic-access.yml
 - type: LLMsTxt
   url: llms/nift-llms.txt
-- type: WellKnown
-  url: well-known/nift-well-known.yml
 - type: Conventions
   url: conventions/nift-conventions.yml
 - type: Idempotency
@@ -113,12 +121,22 @@ common:
   url: lifecycle/nift-lifecycle.yml
 - type: Conformance
   url: conformance/nift-conformance.yml
+- type: Compliance
+  url: conformance/nift-conformance.yml
 - type: DataModel
   url: data-model/nift-data-model.yml
 - type: DomainSecurity
   url: security/nift-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/nift-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.gonift.com/business/vulnerability-disclosure-policy
+- type: Plans
+  url: plans/nift-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/nift-rate-limits.yml
 x-enrichment:
-  date: '2026-07-20'
+  date: '2026-08-13'
   status: enriched
-  artifacts_added: 19
+  artifacts_added: 4
   pass: local-v1
