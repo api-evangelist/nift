@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nift Partners Customers API",
+    "version": "2026-07"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get customer status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.gonift.com/api/v:2023-03/partners/customers/status",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "email",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://www.gonift.com/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a customer's Nift eligibility status, the last time they activated a Nift card, and the last time they selected a gift, keyed by the customer's email and the partner's referral code."
+        },
+        {
+          "info": {
+            "name": "Submit customer deletion requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.gonift.com/api/v2026-07/partners/customers/deletions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://www.gonift.com/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Submits one or many customer email addresses for deletion. Nift fulfils requests by anonymization (scrubbing/replacing personal data) asynchronously in the background. The endpoint is idempotent: re-submitting an address that is already queued is skipped, so retrying after a network failure is safe."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,44 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-deletion-api.md
+limit_count: 0
+published: false
+headers: []
+retry_after: false
+exhaustion_status: null
+limits: []
+documented_caps:
+  - name: deletion batch size
+    scope: per-request
+    limit: 500
+    unit: email addresses
+    operation: createCustomerDeletions
+    enforcement: >-
+      A request carrying more than 500 addresses is rejected 400 invalid_request. The docs
+      instruct partners to split larger lists across multiple requests.
+    source: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-deletion-api.md
+  - name: access token lifetime
+    scope: per-oauth-client
+    limit: 31556952
+    unit: seconds
+    operation: POST /oauth/token
+    enforcement: >-
+      expires_in is returned as 31556952 seconds (~1 year). Nift instructs partners to store
+      the token server-side and only request a new one on expiry, which is an implicit
+      discouragement of repeated token requests rather than a published quota.
+    source: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-status-server.md
+notes: >-
+  Nift publishes NO rate limits for the Partners API. Neither the Customer Status nor the
+  Customer Deletion reference documents a requests-per-window quota, a 429 response, a
+  Retry-After header, or any X-RateLimit-*/RateLimit-* response header — the deletion error
+  table lists only 400, 401 and 403. limit_count is therefore an honest zero. What Nift DOES
+  publish are two request-shaped caps recorded above (500 addresses per deletion request, and
+  a ~1-year token lifetime); neither is a rate limit, so neither is counted. The runtime gap
+  is real: an agent calling this API has no published signal telling it when to back off, and
+  the limits could not be observed live either because every operation requires a
+  Nift-issued OAuth client_credentials grant.
+probed:
+  - url: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-deletion-api.md
+    status: 200
+  - url: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/customer-status-server.md
+    status: 200

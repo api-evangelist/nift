@@ -1,10 +1,19 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
 source: https://github.com/nift-sdks/nift-flow-sdk-docs
 notes: >-
-  Nift ships first-party SDKs to embed the Nift gift-redemption card flow. The web SDK
-  loads from Nift's CDN; the mobile SDKs are distributed via GitHub Packages / Swift
-  Package Manager and require a Nift-issued access token to install (private registries).
+  Nift ships first-party SDKs to embed the Nift gift-redemption card flow. The web SDK loads
+  from Nift's CDN; the mobile SDKs are distributed via GitHub Packages / Swift Package Manager
+  and require a Nift-issued access token to install (private registries). NONE of the four are
+  published to a public registry — npm, PyPI, Maven Central, NuGet, RubyGems, crates.io and
+  pkg.go.dev were all searched and returned nothing for nift/gonift/nift-sdks. This is the
+  currency finding for this provider: three of the four packages have NO queryable registry
+  metadata, so a partner cannot tell what version they are on or when it shipped without
+  asking Nift. The web SDK is the exception and it is unpinned (see below).
+registry_search:
+  checked: '2026-08-13'
+  public_registries_searched: [npm, pypi, maven-central, nuget, rubygems, packagist, crates.io, pkg.go.dev]
+  public_packages_found: 0
 packages:
   - language: javascript
     registry: cdn
@@ -13,31 +22,60 @@ packages:
     install: '<script src="https://cdn.nift.me/sdk/webembed/latest/nift-web-sdk.umd.min.js"></script>'
     global: NiftWebSDK
     official: true
+    version: 1.1.18
+    published: '2026-08-07'
+    version_source: >-
+      Read from the CDN response headers on 2026-08-13: x-amz-meta-version: v1.1.18,
+      last-modified: Fri, 07 Aug 2026 04:24:42 GMT (HTTP 200, 108,063 bytes, CloudFront/S3).
+    pinned: false
+    currency_note: >-
+      The documented install URL floats to /latest/ — there is no version in the path and no
+      public registry entry, so a partner embedding the script tag cannot state which build
+      they shipped, and a silent CDN update changes their integration. The version is only
+      discoverable from an S3 object-metadata header. Nift also documents a second, older CDN
+      host in one example (cdn.gonift.com/sdk/latest/nift-web-sdk.umd.min.js) which now
+      returns 403 — a stale snippet in the published web SDK doc.
     docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/web.md
   - language: kotlin
     registry: github-packages-maven
     name: com.nift:nift-card-flow
-    version: 2.2.6
     url: https://maven.pkg.github.com/nift-sdks/nift-card-flow-android-source
     install: "implementation 'com.nift:nift-card-flow:2.2.6'"
     official: true
     private: true
+    version: 2.2.6
+    published: null
+    version_source: >-
+      Read from the published install snippet in the Android SDK doc (2026-08-13). No release
+      date is obtainable — maven.pkg.github.com requires a Nift-issued token and the backing
+      repo nift-sdks/nift-card-flow-android-source is not public (the nift-sdks org exposes
+      exactly one public repo, nift-flow-sdk-docs).
     docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/android.md
   - language: swift
     registry: swift-package-manager
     name: nift-card-flow-ios
-    version: 3.0.10
     url: https://github.com/nift-sdks/nift-card-flow-ios
     install: '.package(url: "https://github.com/nift-sdks/nift-card-flow-ios.git", from: "3.0.10")'
     official: true
     private: true
+    version: 3.0.10
+    published: null
+    version_source: >-
+      Read from the published Package.swift snippet in the iOS SDK doc (2026-08-13). The
+      snippet embeds an oauth2:{GITHUB_TOKEN} credential in the clone URL — the repo is
+      private, so no tag dates are readable and no release feed exists.
     docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/ios.md
   - language: javascript
     registry: github-packages-npm
     name: '@nift-sdks/nift-card-flow-react-native'
-    version: 3.9.5
     url: https://npm.pkg.github.com/nift-sdks/
     install: npm install @nift-sdks/nift-card-flow-react-native
     official: true
     private: true
+    version: 3.9.5
+    published: null
+    version_source: >-
+      Read from the React Native SDK doc ("Then you can then install version 3.9.5",
+      2026-08-13). npm.pkg.github.com requires authentication; registry.npmjs.org has no
+      @nift-sdks scope, so there is no public publish date.
     docs: https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/react-native.md

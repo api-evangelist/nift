@@ -1,20 +1,94 @@
-generated: '2026-07-20'
-method: searched
-host: https://www.gonift.com
+generated: '2026-08-13'
+method: probed
+source: live HTTPS probes
+hosts_probed:
+  - https://www.gonift.com
+  - https://gonift.com
+  - https://nift.me
+  - https://api.gonift.com
+hits: 0
 documents:
-  - path: /.well-known/security.txt
+  - host: www.gonift.com
+    path: /.well-known/security.txt
     status: 404
-  - path: /.well-known/openid-configuration
+  - host: www.gonift.com
+    path: /.well-known/openid-configuration
     status: 404
-  - path: /.well-known/oauth-authorization-server
+  - host: www.gonift.com
+    path: /.well-known/oauth-authorization-server
     status: 404
-  - path: /.well-known/api-catalog
+  - host: www.gonift.com
+    path: /.well-known/api-catalog
     status: 404
-  - path: /.well-known/ai-plugin.json
+  - host: www.gonift.com
+    path: /.well-known/ai-plugin.json
     status: 404
-  - path: /security.txt
+  - host: www.gonift.com
+    path: /.well-known/agent-card.json
     status: 404
+  - host: www.gonift.com
+    path: /.well-known/agent.json
+    status: 404
+  - host: www.gonift.com
+    path: /security.txt
+    status: 404
+  - host: www.gonift.com
+    path: /llms.txt
+    status: 404
+  - host: gonift.com
+    path: /.well-known/security.txt
+    status: 404
+  - host: gonift.com
+    path: /.well-known/openid-configuration
+    status: 404
+  - host: gonift.com
+    path: /.well-known/oauth-authorization-server
+    status: 404
+  - host: gonift.com
+    path: /.well-known/api-catalog
+    status: 404
+  - host: gonift.com
+    path: /.well-known/ai-plugin.json
+    status: 404
+  - host: gonift.com
+    path: /.well-known/agent-card.json
+    status: 404
+  - host: gonift.com
+    path: /.well-known/agent.json
+    status: 404
+  - host: nift.me
+    path: /.well-known/security.txt
+    status: 404
+  - host: nift.me
+    path: /.well-known/openid-configuration
+    status: 404
+  - host: nift.me
+    path: /.well-known/oauth-authorization-server
+    status: 404
+  - host: nift.me
+    path: /.well-known/api-catalog
+    status: 404
+  - host: nift.me
+    path: /.well-known/ai-plugin.json
+    status: 404
+  - host: nift.me
+    path: /.well-known/agent-card.json
+    status: 404
+  - host: nift.me
+    path: /.well-known/agent.json
+    status: 404
+  - host: api.gonift.com
+    path: '*'
+    status: 0
+    note: host does not resolve — there is no dedicated API subdomain; the API lives on www.gonift.com
 notes: >-
-  No /.well-known discovery surface published on www.gonift.com as of the probe date.
-  Nift's OAuth token endpoint (/oauth/token) is documented but there is no RFC 8414
-  authorization-server metadata document.
+  RE-PROBED 2026-08-13 across four hosts: EVERY /.well-known path 404s. Nift publishes no
+  discovery surface at all — no RFC 9116 security.txt (even though a real Vulnerability
+  Disclosure Policy exists as an HTML page at /business/vulnerability-disclosure-policy),
+  no RFC 8414 authorization-server metadata (even though a Doorkeeper OAuth 2.0 token
+  endpoint is documented at /oauth/token), no RFC 9727 api-catalog, and no agent card.
+  The 404 body is Nift's branded HTML error page, not a soft-200, so these are true misses.
+  THIS FILE RECORDS AN ABSENCE: no WellKnown or SecurityTxt pointer is emitted in apis.yml,
+  because the pointer would assert that Nift serves a surface it does not serve. The two
+  cheapest fixes available to Nift are a security.txt referencing the existing VDP and an
+  /.well-known/oauth-authorization-server document describing the existing token endpoint.

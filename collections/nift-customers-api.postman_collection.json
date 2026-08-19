@@ -1,0 +1,538 @@
+{
+  "item": [
+    {
+      "id": "5b1241a5-6409-4f41-a9e7-b11d85159b04",
+      "name": "Customers",
+      "description": {
+        "content": "Customer status and deletion operations for partners.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bde298c9-fd69-4436-b3b0-ac82ed020e27",
+          "name": "Get customer status",
+          "request": {
+            "name": "Get customer status",
+            "description": {
+              "content": "Returns a customer's Nift eligibility status, the last time they activated a Nift card, and the last time they selected a gift, keyed by the customer's email and the partner's referral code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v:2023-03",
+                "partners",
+                "customers",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read:customers write:customers"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://www.gonift.com/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "(Required) The customer's email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "(Required) The partner referral code."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f3cea338-40f8-447b-8b08-e7bdd79c9a09",
+              "name": "Customer status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v:2023-03",
+                    "partners",
+                    "customers",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The customer's email address.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "person@email.com"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The partner referral code.",
+                        "type": "text/plain"
+                      },
+                      "key": "code",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"last_activated_at\": \"2022-10-26T17:30:00.000-04:00\",\n  \"last_selected_at\": \"2022-11-01T12:21:00.000-04:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8eaf02e-b1eb-4763-a585-5541cc32e1be",
+              "name": "Missing, invalid, or expired access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v:2023-03",
+                    "partners",
+                    "customers",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The customer's email address.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "person@email.com"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The partner referral code.",
+                        "type": "text/plain"
+                      },
+                      "key": "code",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Bearer realm=\"Doorkeeper\", error=\"invalid_token\", ...",
+                  "key": "WWW-Authenticate",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bc0f51b-2832-4940-bb8b-be662e8a255d",
+          "name": "Submit customer deletion requests",
+          "request": {
+            "name": "Submit customer deletion requests",
+            "description": {
+              "content": "Submits one or many customer email addresses for deletion. Nift fulfils requests by anonymization (scrubbing/replacing personal data) asynchronously in the background. The endpoint is idempotent: re-submitting an address that is already queued is skipped, so retrying after a network failure is safe.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2026-07",
+                "partners",
+                "customers",
+                "deletions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read:customers write:customers"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://www.gonift.com/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emails\": [\n    \"<email>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ab3a892b-a656-460e-b90a-6ebe49d3bb07",
+              "name": "Receipt acknowledging the deletion request was accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2026-07",
+                    "partners",
+                    "customers",
+                    "deletions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emails\": [\n    \"jane@example.com\",\n    \"john@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"received_count\": 2,\n  \"queued_count\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bad782df-4e4d-4083-bb0a-4801e728831f",
+              "name": "invalid_request - emails is missing, not an array, empty, longer than 500 entries, or contains non-string values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2026-07",
+                    "partners",
+                    "customers",
+                    "deletions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emails\": [\n    \"jane@example.com\",\n    \"john@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_request\",\n  \"error_description\": \"emails must be a JSON array of 1..500 email strings\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80664603-8c0e-4682-8762-a05f74de378d",
+              "name": "invalid_token - the access token is missing, invalid, or expired (empty body; details in WWW-Authenticate header).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2026-07",
+                    "partners",
+                    "customers",
+                    "deletions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emails\": [\n    \"jane@example.com\",\n    \"john@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "WWW-Authenticate",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6558402f-c11f-4f9c-a9d9-4123647e5a95",
+              "name": "insufficient_scope (token lacks write:customers) or integration_not_configured (application not set up for deletion).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2026-07",
+                    "partners",
+                    "customers",
+                    "deletions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emails\": [\n    \"jane@example.com\",\n    \"john@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_request\",\n  \"error_description\": \"emails must be a JSON array of 1..500 email strings\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.gonift.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6323a056-3f49-4359-bf5e-736b634b3668",
+    "name": "Nift Partners Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Nift's server-side Partners API. It exposes customer eligibility/status lookups and GDPR-style customer deletion (anonymization) requests for partners who integrate the Nift gift redemption flow. Authentication is OAuth 2.0 client credentials issued by Nift; scopes gate read vs. write access to customer data. Faithfully reconstructed by API Evangelist from Nift's published partner docs; Nift does not publish a machine-readable OpenAPI.\n\nContact Support:\n Name: Nift Developer Support\n Email: dev@gonift.com",
+      "type": "text/plain"
+    }
+  }
+}

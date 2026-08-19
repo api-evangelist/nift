@@ -1,4 +1,4 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
 source: https://github.com/nift-sdks/nift-flow-sdk-docs
 versioning:
@@ -17,7 +17,31 @@ deprecation:
 sla:
   url: null
 status_page: null
+changelog:
+  url: null
+  note: >-
+    Nift publishes no dated changelog or release notes for the Partners API or the SDKs. The
+    only version signal is the pinned install string in each SDK doc, and the docs repo
+    (nift-sdks/nift-flow-sdk-docs) carries no CHANGELOG and no tagged releases.
+probed:
+  checked: '2026-08-13'
+  evidence:
+    - url: https://status.gonift.com
+      status: 0
+      note: host does not resolve
+    - url: https://www.gonift.com/status
+      status: 404
+    - url: https://trust.gonift.com
+      status: 0
+      note: host does not resolve
+    - url: https://www.gonift.com/roadmap
+      status: 404
 notes: >-
-  No public status page or formal SLA was found for gonift.com. SDK versions are pinned
-  (web = latest via CDN; Android com.nift:nift-card-flow 2.2.6; iOS 3.0.10; RN 3.9.5).
+  Re-probed 2026-08-13: no public status page (status.gonift.com does not resolve;
+  /status 404s), no SLA, no roadmap and no changelog. SDK versions are pinned in the docs
+  EXCEPT the web SDK, whose documented CDN path floats to /latest/ — the running build was
+  1.1.18 dated 2026-08-07 when read from CDN object metadata (see
+  packages/nift-packages.yml). The operational-transparency layer is the weakest part of
+  Nift's developer surface: a partner integrating the Partners API has no published way to
+  learn that something changed, broke, or is being retired.
 deprecated_operations: []

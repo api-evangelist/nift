@@ -1,0 +1,69 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/nift-mcp.yml + openapi/nift-customers-api-openapi.yml
+notes: >-
+  Nift ships no MCP server and no GraphQL surface. This crosswalk binds the CANDIDATE tool
+  list in mcp/nift-mcp.yml (derived by this pipeline from the Partners API) to the OpenAPI
+  operations that would back it, so the mapping is auditable rather than implied. Confidence
+  is high on both rows because each candidate tool was derived from exactly one operation in
+  the same repo — but the tools are a proposal, not a shipped agent surface. Nothing here
+  asserts that Nift serves MCP.
+surfaces:
+  openapi:
+    path: openapi/nift-customers-api-openapi.yml
+    operations: 2
+    gated: true
+    gated_note: Every operation requires an OAuth 2.0 client_credentials token issued by Nift.
+  graphql:
+    endpoint: null
+    present: false
+  mcp:
+    url: null
+    present: false
+    status: candidate
+    note: No hosted or stdio MCP server published by Nift; see mcp/nift-mcp.yml deployment.mode = none.
+crosswalk:
+  - tool: get_customer_status
+    category: customers
+    rest:
+      - getCustomerStatus
+    binding: 1:1
+    confidence: high
+    inputs_from: >-
+      POST /api/v:2023-03/partners/customers/status requestBody
+      (application/x-www-form-urlencoded: email [required], code [required])
+    scope: read:customers
+    consequence: read
+    note: >-
+      Returns status (available|selected), last_activated_at, last_selected_at. Inherits the
+      operation's real parameters as the tool inputSchema.
+  - tool: create_customer_deletions
+    category: customers
+    rest:
+      - createCustomerDeletions
+    binding: 1:1
+    confidence: high
+    inputs_from: >-
+      POST /api/v2026-07/partners/customers/deletions requestBody
+      (application/json: emails [required, array of 1-500 email strings])
+    scope: write:customers
+    consequence: write
+    note: >-
+      Destructive and asynchronous — fulfils GDPR-style deletion by anonymization. Semantically
+      idempotent (see conventions/nift-conventions.yml); an agent binding should still gate it
+      behind human confirmation, per agentic-access/nift-agentic-access.yml.
+mcp_only: []
+rest_only: []
+graphql_only: []
+coverage:
+  openapi_operations: 2
+  mcp_tools: 2
+  mapped: 2
+  mcp_only: 0
+  rest_only: 0
+  unmapped_pct: 0
+  note: >-
+    100% coverage is an artifact of the tool list being derived FROM the OpenAPI. It is not
+    evidence that Nift's agent surface is complete — the SDK card-flow surface (web/iOS/
+    Android/React Native) has no server-side API equivalent at all, so the largest part of
+    what Nift actually does for partners is unreachable from either REST or MCP.

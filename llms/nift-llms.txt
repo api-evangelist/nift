@@ -26,6 +26,14 @@
 - [For Business / How it works](https://www.gonift.com/business/how-it-works/)
 - [Partners](https://www.gonift.com/business/partners/)
 - [Newsroom](https://www.gonift.com/business/newsroom/)
+- [Business FAQ](https://www.gonift.com/business/faq-for-business/): how a Nift campaign is structured; no pricing is published — every commercial path routes to "Book a demo".
 - [Terms](https://www.gonift.com/terms/)
 - [Privacy](https://www.gonift.com/privacy/)
-- [Data Privacy Framework](https://www.gonift.com/business/data-privacy-framework/)
+- [Data Privacy Framework](https://www.gonift.com/business/data-privacy-framework/): EU-U.S. / UK Extension / Swiss-U.S. DPF certification claim, effective 2026-02-04.
+- [Vulnerability Disclosure Policy](https://www.gonift.com/business/vulnerability-disclosure-policy): report to security@gonift.com; 5-business-day acknowledgement; CFAA safe harbor.
+
+## Operational notes
+- No pricing page, no status page, no changelog, no roadmap, and no published rate limits — see plans/, lifecycle/ and rate-limits/ artifacts.
+- No /.well-known surface of any kind (security.txt, oauth-authorization-server, api-catalog, agent card all 404).
+- No MCP server, no webhooks and no event/AsyncAPI surface. mcp/nift-mcp.yml is a derived CANDIDATE tool list, not a shipped agent surface.
+- API access is provisioned by Nift: OAuth client_id/client_secret, SDK clientId and partner referral code are all issued by Nift, not self-serve.

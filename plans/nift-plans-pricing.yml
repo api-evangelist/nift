@@ -1,0 +1,49 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.gonift.com/business/faq-for-business/
+plan_count: 0
+public_pricing: false
+pricing_url: null
+model: sales-gated
+currency: null
+probed:
+  - url: https://www.gonift.com/pricing/
+    status: 404
+  - url: https://www.gonift.com/business/pricing/
+    status: 404
+  - url: https://www.gonift.com/business/faq-for-business/
+    status: 200
+  - url: https://www.gonift.com/business/
+    status: 200
+plans: []
+commercial_model:
+  buyer_sides:
+    - side: brands-and-services
+      description: >-
+        Brands, DTC merchants and restaurants buy customer acquisition — they pay Nift for
+        net-new customers acquired through gift selection, measured against a target CAC/LTV.
+      pricing_disclosed: false
+    - side: partners
+      description: >-
+        Consumer platforms and apps (the "thank-you" surfaces that embed the SDK card flow)
+        monetize their customer moments; the partner side is the one the developer surface
+        (SDKs + Partners API) actually serves.
+      pricing_disclosed: false
+  onboarding: >-
+    Engagement starts with a kickoff call where Nift and the advertiser align on performance
+    KPIs, attribution and desired scale, then set up a pilot campaign. Nift states there are
+    no minimums to set up a test and that results are typically available the next day.
+  entry_point: https://www.gonift.com/business/contact-us/
+  entry_point_label: Schedule a demo / Talk to Sales
+api_pricing:
+  disclosed: false
+  note: >-
+    The Partners API and the SDKs carry no separately published price. Access is provisioned
+    as part of a partner agreement — Nift issues the clientId, OAuth client_id/client_secret
+    and referral code, so there is no self-serve API tier to price.
+notes: >-
+  Nift publishes NO pricing page of any kind. There is no rate card, no tier list, no minimum
+  and no published CAC/CPA range — every commercial question routes to "Book a demo". The
+  Business FAQ describes how a campaign is structured and confirms "There are no minimums to
+  set up a test", but attaches no numbers. plan_count is an honest zero: this is a sales-gated
+  B2B marketplace, not a self-serve API product with tiers.
