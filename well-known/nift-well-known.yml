@@ -2,93 +2,67 @@ generated: '2026-08-13'
 method: probed
 source: live HTTPS probes
 hosts_probed:
-  - https://www.gonift.com
-  - https://gonift.com
-  - https://nift.me
-  - https://api.gonift.com
+- https://www.gonift.com
+- https://gonift.com
+- https://nift.me
+- https://api.gonift.com
 hits: 0
-documents:
-  - host: www.gonift.com
-    path: /.well-known/security.txt
+notes: 'RE-PROBED 2026-08-13 across four hosts: EVERY /.well-known path 404s. Nift publishes no discovery
+  surface at all — no RFC 9116 security.txt (even though a real Vulnerability Disclosure Policy exists
+  as an HTML page at /business/vulnerability-disclosure-policy), no RFC 8414 authorization-server metadata
+  (even though a Doorkeeper OAuth 2.0 token endpoint is documented at /oauth/token), no RFC 9727 api-catalog,
+  and no agent card. The 404 body is Nift''s branded HTML error page, not a soft-200, so these are true
+  misses. THIS FILE RECORDS AN ABSENCE: no WellKnown or SecurityTxt pointer is emitted in apis.yml, because
+  the pointer would assert that Nift serves a surface it does not serve. The two cheapest fixes available
+  to Nift are a security.txt referencing the existing VDP and an /.well-known/oauth-authorization-server
+  document describing the existing token endpoint.'
+hosts:
+- host: ''
+  documents:
+  - path: /.well-known/security.txt
     status: 404
-  - host: www.gonift.com
-    path: /.well-known/openid-configuration
+  - path: /.well-known/openid-configuration
     status: 404
-  - host: www.gonift.com
-    path: /.well-known/oauth-authorization-server
+  - path: /.well-known/oauth-authorization-server
     status: 404
-  - host: www.gonift.com
-    path: /.well-known/api-catalog
+  - path: /.well-known/api-catalog
     status: 404
-  - host: www.gonift.com
-    path: /.well-known/ai-plugin.json
+  - path: /.well-known/ai-plugin.json
     status: 404
-  - host: www.gonift.com
-    path: /.well-known/agent-card.json
+  - path: /.well-known/agent-card.json
     status: 404
-  - host: www.gonift.com
-    path: /.well-known/agent.json
+  - path: /.well-known/agent.json
     status: 404
-  - host: www.gonift.com
-    path: /security.txt
+  - path: /.well-known/security.txt
     status: 404
-  - host: www.gonift.com
-    path: /llms.txt
+  - path: /.well-known/openid-configuration
     status: 404
-  - host: gonift.com
-    path: /.well-known/security.txt
+  - path: /.well-known/oauth-authorization-server
     status: 404
-  - host: gonift.com
-    path: /.well-known/openid-configuration
+  - path: /.well-known/api-catalog
     status: 404
-  - host: gonift.com
-    path: /.well-known/oauth-authorization-server
+  - path: /.well-known/ai-plugin.json
     status: 404
-  - host: gonift.com
-    path: /.well-known/api-catalog
+  - path: /.well-known/agent-card.json
     status: 404
-  - host: gonift.com
-    path: /.well-known/ai-plugin.json
+  - path: /.well-known/agent.json
     status: 404
-  - host: gonift.com
-    path: /.well-known/agent-card.json
+  - path: /.well-known/security.txt
     status: 404
-  - host: gonift.com
-    path: /.well-known/agent.json
+  - path: /.well-known/openid-configuration
     status: 404
-  - host: nift.me
-    path: /.well-known/security.txt
+  - path: /.well-known/oauth-authorization-server
     status: 404
-  - host: nift.me
-    path: /.well-known/openid-configuration
+  - path: /.well-known/api-catalog
     status: 404
-  - host: nift.me
-    path: /.well-known/oauth-authorization-server
+  - path: /.well-known/ai-plugin.json
     status: 404
-  - host: nift.me
-    path: /.well-known/api-catalog
+  - path: /.well-known/agent-card.json
     status: 404
-  - host: nift.me
-    path: /.well-known/ai-plugin.json
+  - path: /.well-known/agent.json
     status: 404
-  - host: nift.me
-    path: /.well-known/agent-card.json
-    status: 404
-  - host: nift.me
-    path: /.well-known/agent.json
-    status: 404
-  - host: api.gonift.com
-    path: '*'
-    status: 0
-    note: host does not resolve — there is no dedicated API subdomain; the API lives on www.gonift.com
-notes: >-
-  RE-PROBED 2026-08-13 across four hosts: EVERY /.well-known path 404s. Nift publishes no
-  discovery surface at all — no RFC 9116 security.txt (even though a real Vulnerability
-  Disclosure Policy exists as an HTML page at /business/vulnerability-disclosure-policy),
-  no RFC 8414 authorization-server metadata (even though a Doorkeeper OAuth 2.0 token
-  endpoint is documented at /oauth/token), no RFC 9727 api-catalog, and no agent card.
-  The 404 body is Nift's branded HTML error page, not a soft-200, so these are true misses.
-  THIS FILE RECORDS AN ABSENCE: no WellKnown or SecurityTxt pointer is emitted in apis.yml,
-  because the pointer would assert that Nift serves a surface it does not serve. The two
-  cheapest fixes available to Nift are a security.txt referencing the existing VDP and an
-  /.well-known/oauth-authorization-server document describing the existing token endpoint.
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.

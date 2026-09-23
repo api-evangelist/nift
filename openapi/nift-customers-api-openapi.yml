@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Nift Partners Customers API
   version: 2026-07
@@ -122,26 +122,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    DeletionReceipt:
-      type: object
-      properties:
-        received_count:
-          type: integer
-          description: Number of email addresses received in this request.
-        queued_count:
-          type: integer
-          description: Number of addresses newly queued for deletion (minus invalid, duplicated, or already-queued addresses).
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: OAuth 2.0 style error code.
-          example: invalid_request
-        error_description:
-          type: string
-          description: Human-readable error description.
-          example: emails must be a JSON array of 1..500 email strings
     CustomerStatus:
       type: object
       properties:
@@ -163,6 +143,26 @@ components:
           - 'null'
           format: date-time
           description: The last time the customer selected a gift.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: OAuth 2.0 style error code.
+          example: invalid_request
+        error_description:
+          type: string
+          description: Human-readable error description.
+          example: emails must be a JSON array of 1..500 email strings
+    DeletionReceipt:
+      type: object
+      properties:
+        received_count:
+          type: integer
+          description: Number of email addresses received in this request.
+        queued_count:
+          type: integer
+          description: Number of addresses newly queued for deletion (minus invalid, duplicated, or already-queued addresses).
   securitySchemes:
     oauth2:
       type: oauth2
