@@ -68,7 +68,6 @@ apis:
   name: NIFT Customers API
   description: Customer status and deletion operations for partners.
   humanURL: https://github.com/nift-sdks/nift-flow-sdk-docs
-  baseURL: https://www.gonift.com
   tags:
   - Customers
   properties:
