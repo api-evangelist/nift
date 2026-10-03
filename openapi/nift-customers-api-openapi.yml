@@ -122,15 +122,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    DeletionReceipt:
-      type: object
-      properties:
-        received_count:
-          type: integer
-          description: Number of email addresses received in this request.
-        queued_count:
-          type: integer
-          description: Number of addresses newly queued for deletion (minus invalid, duplicated, or already-queued addresses).
     Error:
       type: object
       properties:
@@ -142,6 +133,15 @@ components:
           type: string
           description: Human-readable error description.
           example: emails must be a JSON array of 1..500 email strings
+    DeletionReceipt:
+      type: object
+      properties:
+        received_count:
+          type: integer
+          description: Number of email addresses received in this request.
+        queued_count:
+          type: integer
+          description: Number of addresses newly queued for deletion (minus invalid, duplicated, or already-queued addresses).
     CustomerStatus:
       type: object
       properties:
