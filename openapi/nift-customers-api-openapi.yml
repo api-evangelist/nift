@@ -122,17 +122,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: OAuth 2.0 style error code.
-          example: invalid_request
-        error_description:
-          type: string
-          description: Human-readable error description.
-          example: emails must be a JSON array of 1..500 email strings
     DeletionReceipt:
       type: object
       properties:
@@ -163,6 +152,17 @@ components:
           - 'null'
           format: date-time
           description: The last time the customer selected a gift.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: OAuth 2.0 style error code.
+          example: invalid_request
+        error_description:
+          type: string
+          description: Human-readable error description.
+          example: emails must be a JSON array of 1..500 email strings
   securitySchemes:
     oauth2:
       type: oauth2
