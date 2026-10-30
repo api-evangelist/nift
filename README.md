@@ -64,6 +64,138 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-NIFT is a company surfaced as a portfolio company of foundry-group and added to the API Evangelist network as a stub for enrichment. Sector: marketing. This profile is a lead awaiting the enrichment pipeline.
+Nift is a customer-gifting and acquisition platform: businesses send "thank-you" gifts that let their own customers discover and try new brands, restaurants, and services, while the partnering brands gain new customers at the moment of gift selection. Proprietary AI matches each recipient to relevant gift options. For developers, Nift ships a partner integration surface: first-party SDKs (Web, iOS, Android, React Native) that embed the Nift gift-redemption "card flow" directly into a partner's app, plus a server-side Partners API secured with OAuth 2.0 client credentials for looking up customer eligibility status and submitting GDPR-style customer deletion (anonymization) requests. Backed by Foundry Group.
 
-Backed by: foundry-group — https://www.gonift.com
+**Areas:** Company · Marketing · Gifting · Customer Acquisition · Loyalty · Rewards · SDK · Partners
+
+## NIFT on APIs.io
+
+Everything profiled for NIFT is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/nift/](https://apis.io/providers/nift/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [NIFT Customers API](https://apis.io/apis/nift/nift-customers-api/) — Customer status and deletion operations for partners.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [nift-partners](https://apis.io/servers/nift/nift-partners/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Nift Agentic Access](https://apis.io/agentic-access/nift/nift-agentic-access/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Nift Partners Customers API](https://apis.io/collections/nift/open-nift-customers-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Nift Partners Overlay](https://apis.io/overlays/nift/nift-partners-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Nift Authentication](https://apis.io/security/nift/nift-authentication/)
+- [Nift Domain Security](https://apis.io/security/nift/nift-domain-security/)
+- [Nift Vulnerability Disclosure](https://apis.io/security/nift/nift-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Nift Scopes](https://apis.io/scopes/nift/nift-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Nift Plans Pricing](https://apis.io/plans/nift/nift-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Nift Rate Limits](https://apis.io/rate-limits/nift/nift-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.gonift.com)
+- [Documentation](https://github.com/nift-sdks/nift-flow-sdk-docs)
+- [Getting started](https://github.com/nift-sdks/nift-flow-sdk-docs/blob/main/docs/sdk/web.md#quick-start)
+- [Sign up](https://www.gonift.com/users/sign_in)
+- [Support](https://www.gonift.com/contact_us/)
+- [Blog](https://www.gonift.com/business/newsroom/)
+- [Security](https://www.gonift.com/business/vulnerability-disclosure-policy)
+- [Terms of service](https://www.gonift.com/terms/)
+- [Privacy policy](https://www.gonift.com/privacy/)
+- [GitHub](https://github.com/nift-sdks)
+
+## API Evangelist rating
+
+**Kin Score 39.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 15.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 42.1 |
+
+**Agent readiness 38.9** — agent-native
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 45.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/nift/](https://apis.io/providers/nift/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for NIFT: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/nift/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
